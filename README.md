@@ -8,13 +8,9 @@
   <a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Demo Video</a>
 </p>
 
-<p align="center"><strong>Haoandong Yang<sup>1,2</sup></strong> · Gabriel W. Haddon-Hill<sup>1</sup> · Teresa Zielinska<sup>2</sup> · Shingo Murata<sup>1,*</sup></p>
+<p align="center">Haoandong Yang<sup>1,2</sup> · Gabriel W. Haddon-Hill<sup>1</sup> · Teresa Zielinska<sup>2</sup> · Shingo Murata<sup>1,*</sup></p>
 <p align="center"><em><sup>1</sup> School of Integrated Design Engineering, Keio University · <sup>2</sup> Faculty of Power and Aeronautical Engineering, Warsaw University of Technology</em></p>
 <p align="center"><strong>Published in <em>Robotics</em>, 2026, 15(8), 154</strong></p>
-
-<p align="center">
-  <a href="https://yhad666.github.io/ActivAsk/"><img src="assets/figure_1_conceptual_overview.jpg" alt="ActivAsk conceptual overview" width="100%"></a>
-</p>
 
 ## Abstract
 
@@ -26,9 +22,19 @@ The public release includes the evaluation data, prompt materials, calibration s
 
 The project page contains the playable 67-second real-robot demonstration. It shows ActivAsk resolving ambiguity among multiple cups in a cluttered tabletop scene and then executing the corresponding grasp with a Hello Robot Stretch platform.
 
+<p align="center">
+  <a href="https://yhad666.github.io/ActivAsk/"><img src="assets/activask_teaser.jpg" alt="ActivAsk real-world demo — click to play" width="100%"></a>
+</p>
+
 <p align="center"><a href="https://yhad666.github.io/ActivAsk/"><strong>▶ Open the interactive project page to play the demo</strong></a></p>
 
 <p align="center"><a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Download the MP4 directly</a></p>
+
+## Method Overview
+
+The published system overview is included below. It shows how ActivAsk turns an ambiguous instruction into candidate-grounded clarification and a gated robot grasp.
+
+<p align="center"><img src="assets/system_overview.jpg" alt="ActivAsk system overview" width="100%"></p>
 
 ## What ActivAsk Does
 
