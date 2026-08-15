@@ -1,5 +1,7 @@
 # ActivAsk
 
+<p align="center"><strong><a href="https://yhad666.github.io/ActivAsk/">▶ Open the live interactive demo homepage</a></strong></p>
+
 ![ActivAsk scene observations](assets/activask_teaser.jpg)
 
 ActivAsk is a zero-shot framework for resolving referential ambiguity before robotic grasping. It constructs open-vocabulary candidates from RGB-D input, asks candidate-grounded yes/no questions when needed, updates the candidate state from the user's answer, and grasps after target resolution.
@@ -15,12 +17,9 @@ ActivAsk selects among VLM-proposed candidate partitions using an expected-free-
 
 The video below is a 67-second real-robot demonstration of ActivAsk in a cluttered tabletop scene. The system resolves referential ambiguity among multiple cups through candidate-grounded clarification, updates the candidate state from the user's answer, and then executes the corresponding grasp with a Hello Robot Stretch platform.
 
-<p align="center">
-  <video controls preload="metadata" poster="assets/activask_teaser.jpg" width="960">
-    <source src="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4" type="video/mp4">
-    <a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Watch or download the real-world demo</a>
-  </video>
-</p>
+<p align="center"><strong><a href="https://yhad666.github.io/ActivAsk/">▶ Play this demo on the interactive project homepage</a></strong></p>
+
+<p align="center"><a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Download the MP4 directly</a></p>
 
 <p align="center"><em>Real-world demonstration of ambiguity resolution and robot execution in ActivAsk.</em></p>
 
