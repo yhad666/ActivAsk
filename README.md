@@ -1,15 +1,16 @@
-# ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions
+# ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping Under Ambiguous Instructions
 
 <p align="center">
   <a href="https://yhad666.github.io/ActivAsk/">Project Page</a> ·
+  <a href="https://github.com/yhad666/ActivAsk/blob/main/paper/robotics-15-00154.pdf">Paper PDF</a> ·
   <a href="https://github.com/yhad666/ActivAsk">Code</a> ·
   <a href="https://github.com/yhad666/ActivAsk/tree/main/data">Data & Analysis</a> ·
   <a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Demo Video</a>
 </p>
 
-<p align="center"><strong>Haoandong Yang</strong> · Gabriel W. Haddon-Hill · Teresa Zielinska · Shingo Murata</p>
-<p align="center"><em>Murata Laboratory · Keio University</em></p>
-<p align="center"><strong>Submitted, 2026</strong></p>
+<p align="center"><strong>Haoandong Yang<sup>1,2</sup></strong> · Gabriel W. Haddon-Hill<sup>1</sup> · Teresa Zielinska<sup>2</sup> · Shingo Murata<sup>1,*</sup></p>
+<p align="center"><em><sup>1</sup> School of Integrated Design Engineering, Keio University · <sup>2</sup> Faculty of Power and Aeronautical Engineering, Warsaw University of Technology</em></p>
+<p align="center"><strong>Published in <em>Robotics</em>, 2026, 15(8), 154</strong></p>
 
 <p align="center">
   <a href="https://yhad666.github.io/ActivAsk/"><img src="assets/figure_1_conceptual_overview.jpg" alt="ActivAsk conceptual overview" width="100%"></a>
@@ -53,6 +54,7 @@ The project page contains the playable 67-second real-robot demonstration. It sh
 - `analysis/`: scripts for generating analysis tables and threshold-sweep plots.
 - `examples/`: minimal offline/online examples, EFE selection demo, and model setup template.
 - `videos/`: supplementary real-robot videos grouped by object category and outcome.
+- `paper/`: the published article PDF.
 
 ## Quick Start
 
@@ -74,18 +76,17 @@ python examples/offline_trial_demo.py
 python examples/online_trial_demo.py
 ```
 
-## Paper Status
-
-The manuscript is listed as **submitted in 2026**. The official publication record is maintained by the [Murata Laboratory](https://murata-lab.jp/publications/?lang=en); a public paper or preprint link will be added here when available.
-
 ## Citation
 
 ```bibtex
 @article{yang2026activask,
-  title   = {ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions},
+  title   = {ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping Under Ambiguous Instructions},
   author  = {Yang, Haoandong and Haddon-Hill, Gabriel W. and Zielinska, Teresa and Murata, Shingo},
+  journal = {Robotics},
   year    = {2026},
-  note    = {Submitted manuscript}
+  volume  = {15},
+  number  = {8},
+  pages   = {154}
 }
 ```
 
