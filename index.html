@@ -19,7 +19,7 @@
       --line: #dfe5ee;
       --accent: #2457d6;
       --accent-dark: #173a98;
-      --max: 1080px;
+      --max: 1160px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
@@ -51,10 +51,10 @@
       text-transform: uppercase;
     }
     h1 {
-      max-width: 980px;
+      max-width: 1140px;
       margin: 0 auto 22px;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(2rem, 3.55vw, 3.35rem);
+      font-size: clamp(1.85rem, 2.5vw, 2.75rem);
       font-weight: 600;
       line-height: 1.12;
       letter-spacing: -.04em;
@@ -188,7 +188,6 @@
 
     <main>
       <section class="hero" style="border-top: 0;">
-        <p class="eyebrow">Research project · Robotics · 2026</p>
         <h1>ActivAsk: Free-Energy-Guided Clarification<br>for Robotic Grasping Under Ambiguous Instructions</h1>
         <p class="authors">Haoandong Yang<sup>1,2</sup> · Gabriel W. Haddon-Hill<sup>1</sup> · Teresa Zielinska<sup>2</sup> · Shingo Murata<sup>1,*</sup></p>
         <p class="affiliation"><sup>1</sup> School of Integrated Design Engineering, Keio University · <sup>2</sup> Faculty of Power and Aeronautical Engineering, Warsaw University of Technology</p>
@@ -219,12 +218,22 @@
         <p class="abstract">Robotic manipulation often fails before grasping begins: a referring instruction may not uniquely identify one visible object. ActivAsk treats clarification as an active inference problem. It constructs open-vocabulary candidates from RGB-D observations, proposes candidate-grounded yes/no questions, selects a partition using an expected-free-energy criterion, updates the candidate state from the user's answer, and executes the grasp only after the target is resolved.</p>
       </section>
 
+      <section>
+        <div class="section-label">Visual teaser</div>
+        <h2>The interaction loop, at a glance.</h2>
+        <div class="teaser-panel">
+          <img src="assets/activask_teaser.jpg" alt="ActivAsk teaser showing ambiguity resolution and robotic execution">
+          <div class="teaser-note">The teaser is also used as the playable demo's poster, so the video is identifiable before playback while the full visual remains available here for closer inspection.</div>
+        </div>
+      </section>
+
+
       <section id="method">
         <div class="section-label">Method overview</div>
         <h2>Ask only what resolves the ambiguity.</h2>
         <p class="section-lede">ActivAsk uses the candidate set as the state of the interaction. Candidate partitions are scored externally with the deployed expected-free-energy objective, so the robot can choose informative clarification questions without asking the VLM to optimize the objective directly.</p>
         <figure class="system-figure">
-          <img src="assets/system_overview.jpg" alt="System overview of ActivAsk, from ambiguous instruction to clarification and robotic grasping">
+          <img src="assets/system_overview.png" alt="System overview of ActivAsk, from ambiguous instruction to clarification and robotic grasping">
           <figcaption>System overview: candidate-grounded clarification narrows the target state before grasp execution.</figcaption>
         </figure>
         <div class="steps" aria-label="ActivAsk pipeline">
@@ -232,15 +241,6 @@
           <div class="step"><div class="step-number">02</div><div><strong>Clarify</strong><span>Propose candidate-grounded yes/no questions.</span></div></div>
           <div class="step"><div class="step-number">03</div><div><strong>Update</strong><span>Eliminate candidates inconsistent with the answer.</span></div></div>
           <div class="step"><div class="step-number">04</div><div><strong>Execute</strong><span>Grasp only after the target state is resolved.</span></div></div>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-label">Visual teaser</div>
-        <h2>The interaction loop, at a glance.</h2>
-        <div class="teaser-panel">
-          <img src="assets/activask_teaser.jpg" alt="ActivAsk teaser showing ambiguity resolution and robotic execution">
-          <div class="teaser-note">The teaser is also used as the playable demo's poster, so the video is identifiable before playback while the full visual remains available here for closer inspection.</div>
         </div>
       </section>
 

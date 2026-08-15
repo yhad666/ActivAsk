@@ -34,7 +34,7 @@ The project page contains the playable 67-second real-robot demonstration. It sh
 
 The published system overview is included below. It shows how ActivAsk turns an ambiguous instruction into candidate-grounded clarification and a gated robot grasp.
 
-<p align="center"><img src="assets/system_overview.jpg" alt="ActivAsk system overview" width="100%"></p>
+<p align="center"><img src="assets/system_overview.png" alt="ActivAsk system overview" width="100%"></p>
 
 ## What ActivAsk Does
 
