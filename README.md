@@ -11,6 +11,21 @@ This repository contains the public evaluation data, system prompt materials, ca
 
 ActivAsk selects among VLM-proposed candidate partitions using an expected-free-energy criterion motivated by active inference. With neutral response preferences, the deployed score reduces to information gain over candidate partitions.
 
+## Real-World Demo
+
+The video below is a 67-second real-robot demonstration of ActivAsk in a cluttered tabletop scene. The system resolves referential ambiguity among multiple cups through candidate-grounded clarification, updates the candidate state from the user's answer, and then executes the corresponding grasp with a Hello Robot Stretch platform.
+
+<p align="center">
+  <video controls preload="metadata" poster="assets/activask_teaser.jpg" width="960">
+    <source src="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4" type="video/mp4">
+    <a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Watch or download the real-world demo</a>
+  </video>
+</p>
+
+<p align="center"><em>Real-world demonstration of ambiguity resolution and robot execution in ActivAsk.</em></p>
+
+> The repository video is a web-optimized copy of the original recording (1280×540, 24 fps); the original local recording is preserved separately.
+
 ## How to Run
 
 The analysis tables can be generated from the released CSV files without robot hardware or model weights.
