@@ -1,33 +1,62 @@
-# ActivAsk
+# ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions
 
-<p align="center"><strong><a href="https://yhad666.github.io/ActivAsk/">▶ Open the live interactive demo homepage</a></strong></p>
+<p align="center">
+  <a href="https://yhad666.github.io/ActivAsk/">Project Page</a> ·
+  <a href="https://github.com/yhad666/ActivAsk">Code</a> ·
+  <a href="https://github.com/yhad666/ActivAsk/tree/main/data">Data & Analysis</a> ·
+  <a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Demo Video</a>
+</p>
 
-![ActivAsk scene observations](assets/activask_teaser.jpg)
+<p align="center"><strong>Haoandong Yang</strong> · Gabriel W. Haddon-Hill · Teresa Zielinska · Shingo Murata</p>
+<p align="center"><em>Murata Laboratory · Keio University</em></p>
+<p align="center"><strong>Submitted, 2026</strong></p>
 
-ActivAsk is a zero-shot framework for resolving referential ambiguity before robotic grasping. It constructs open-vocabulary candidates from RGB-D input, asks candidate-grounded yes/no questions when needed, updates the candidate state from the user's answer, and grasps after target resolution.
+<p align="center">
+  <a href="https://yhad666.github.io/ActivAsk/"><img src="assets/figure_1_conceptual_overview.jpg" alt="ActivAsk conceptual overview" width="100%"></a>
+</p>
 
-This repository contains the public evaluation data, system prompt materials, calibration sweep, scene images, instruction pools, analysis scripts, and minimal demos associated with ActivAsk:
+## Abstract
 
-> **ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions**  
-> Haoandong Yang, Gabriel W. Haddon-Hill, Teresa Zielinska, and Shingo Murata  
+Robotic manipulation often fails before grasping begins: a referring instruction may not uniquely identify one visible object. ActivAsk treats clarification as an active inference problem. It constructs open-vocabulary candidates from RGB-D observations, proposes candidate-grounded yes/no questions, selects a partition using an expected-free-energy criterion, updates the candidate state from the user's answer, and executes the grasp only after the target is resolved.
 
-ActivAsk selects among VLM-proposed candidate partitions using an expected-free-energy criterion motivated by active inference. With neutral response preferences, the deployed score reduces to information gain over candidate partitions.
+The public release includes the evaluation data, prompt materials, calibration sweep, scene observations, analysis scripts, minimal policy implementation, and real-robot supplementary videos.
 
 ## Real-World Demo
 
-The video below is a 67-second real-robot demonstration of ActivAsk in a cluttered tabletop scene. The system resolves referential ambiguity among multiple cups through candidate-grounded clarification, updates the candidate state from the user's answer, and then executes the corresponding grasp with a Hello Robot Stretch platform.
+The project page contains the playable 67-second real-robot demonstration. It shows ActivAsk resolving ambiguity among multiple cups in a cluttered tabletop scene and then executing the corresponding grasp with a Hello Robot Stretch platform.
 
-<p align="center"><strong><a href="https://yhad666.github.io/ActivAsk/">▶ Play this demo on the interactive project homepage</a></strong></p>
+<p align="center"><a href="https://yhad666.github.io/ActivAsk/"><strong>▶ Open the interactive project page to play the demo</strong></a></p>
 
 <p align="center"><a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Download the MP4 directly</a></p>
 
-<p align="center"><em>Real-world demonstration of ambiguity resolution and robot execution in ActivAsk.</em></p>
+## What ActivAsk Does
 
-> The repository video is a web-optimized copy of the original recording (1280×540, 24 fps); the original local recording is preserved separately.
+| Stage | Description |
+| --- | --- |
+| Perceive | Construct open-vocabulary object candidates from RGB-D input. |
+| Clarify | Ask a candidate-grounded yes/no question when the instruction is ambiguous. |
+| Update | Eliminate candidates that are inconsistent with the user's answer. |
+| Execute | Pass the resolved target to the robot for grasp execution. |
 
-## How to Run
+## Study Snapshot
 
-The analysis tables can be generated from the released CSV files without robot hardware or model weights.
+- **1,512 offline trials** for target-resolution analysis.
+- **228 online trials** for real-robot execution analysis.
+- **Robot platform:** Hello Robot Stretch SE3 / Stretch 3-class mobile manipulator.
+- **Camera:** head-mounted Intel RealSense D435i RGB-D camera.
+
+## Repository Structure
+
+- `data/`: public offline and online trial records, scenes, instruction pools, and calibration data.
+- `prompts/`: VLM system prompt, policy-specific role instructions, direct-decision prompt, and JSON schemas.
+- `activask/`: minimal policy implementation for tokenization, candidate-state updates, question selection, baselines, and execution gating.
+- `analysis/`: scripts for generating analysis tables and threshold-sweep plots.
+- `examples/`: minimal offline/online examples, EFE selection demo, and model setup template.
+- `videos/`: supplementary real-robot videos grouped by object category and outcome.
+
+## Quick Start
+
+The released analysis tables can be generated without robot hardware or model weights:
 
 ```bash
 python -m venv .venv
@@ -45,63 +74,21 @@ python examples/offline_trial_demo.py
 python examples/online_trial_demo.py
 ```
 
-## Repository Structure
+## Paper Status
 
-- `data/offline_trials.csv`: per-trial target-resolution data for 1,512 offline trials.
-- `data/online_trials.csv`: per-trial robot-execution data for 228 online trials.
-- `data/scenes/`: released scene observation images.
-- `data/instruction_pools/`: per-scene instruction pools grouped by instruction type.
-- `data/calibration/`: detector threshold sweep data and selected detector thresholds.
-- `prompts/`: VLM system prompt, policy-specific role instructions, direct-decision prompt, and JSON output schema.
-- `analysis/`: scripts for generating analysis tables from the public CSV files.
-- `activask/`: minimal policy implementation for instruction term tokenization, candidate-state updates, question selection, baselines, and the online execution gate.
-- `examples/`: minimal offline/online examples, the EFE-style question-selection example, and a model setup template.
-- `videos/`: supplementary real-robot videos grouped by object category and outcome.
+The manuscript is listed as **submitted in 2026**. The official publication record is maintained by the [Murata Laboratory](https://murata-lab.jp/publications/?lang=en); a public paper or preprint link will be added here when available.
 
-## Installation
+## Citation
 
-Python 3.12.3 is recommended.
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+```bibtex
+@article{yang2026activask,
+  title   = {ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions},
+  author  = {Yang, Haoandong and Haddon-Hill, Gabriel W. and Zielinska, Teresa and Murata, Shingo},
+  year    = {2026},
+  note    = {Submitted manuscript}
+}
 ```
-
-## Supplementary Videos
-
-Videos follow the object categories used in the study and are organized as:
-
-```text
-videos/
-  Bottle/{Success,Failed}/
-  Cup/{Success,Failed}/
-  Utensil/{Success,Failed}/
-```
-
-Each clip is a representative real-robot execution trial for the corresponding category and outcome.
-
-## Hardware Scope
-
-The statistics, calibration, scene-image inspection, instruction-pool sampling, and EFE demo run without robot hardware.
-
-The online experiments used:
-
-- Robot: Hello Robot Stretch SE3 / Stretch 3-class mobile manipulator.
-- Camera: head-mounted Intel RealSense D435i RGB-D camera.
-- Compute: an NVIDIA RTX 6000 Ada Generation GPU workstation.
-- Runtime split: the GPU workstation ran the web service, GroundingDINO, SAM, and MiMo-VL; the robot-side service executed waypoint trajectories over ZeroMQ.
-
-Model weights are not included in this repository.
-
-Open-source external components used:
-
-- GroundingDINO: <https://github.com/IDEA-Research/GroundingDINO>
-- Segment Anything: <https://github.com/facebookresearch/segment-anything>
-- MiMo-VL-7B-RL-2508: <https://huggingface.co/XiaomiMiMo/MiMo-VL-7B-RL-2508>
-
-Download the model weights from the upstream projects and connect them through local paths or a local VLM endpoint. A minimal interface template is provided at `examples/model_setup.example.env`. The public CSV analysis and minimal examples do not require these model weights.
 
 ## Licenses
 
-Code is released under the MIT License. Data, scene images, calibration tables, and videos are released under CC BY 4.0; see `DATA_LICENSE`.
+Code is released under the MIT License. Data, scene images, calibration tables, instruction pools, and videos are released under CC BY 4.0; see `DATA_LICENSE`.

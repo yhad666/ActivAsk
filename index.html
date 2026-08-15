@@ -3,177 +3,272 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="ActivAsk: free-energy-guided clarification for robotic grasping under ambiguous instructions.">
-  <title>ActivAsk — Real-World Robot Demo</title>
+  <meta name="description" content="ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions.">
+  <meta property="og:title" content="ActivAsk — Research Project">
+  <meta property="og:description" content="Free-energy-guided clarification for robotic grasping under ambiguous instructions.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yhad666.github.io/ActivAsk/">
+  <link rel="canonical" href="https://yhad666.github.io/ActivAsk/">
+  <title>ActivAsk — Research Project</title>
   <style>
     :root {
-      --bg: #07111f;
-      --panel: #0e1c2e;
-      --panel-2: #12263d;
-      --ink: #f4f7fb;
-      --muted: #a6b7c9;
-      --line: rgba(180, 213, 240, .18);
-      --accent: #7ee7d6;
-      --accent-2: #91b8ff;
-      --max: 1180px;
+      --ink: #172033;
+      --muted: #5b677a;
+      --soft: #f5f7fb;
+      --line: #dfe5ee;
+      --accent: #2457d6;
+      --accent-dark: #173a98;
+      --max: 1080px;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
       color: var(--ink);
-      background:
-        radial-gradient(circle at 80% 0%, rgba(89, 143, 255, .18), transparent 34rem),
-        radial-gradient(circle at 10% 15%, rgba(74, 221, 196, .12), transparent 28rem),
-        var(--bg);
-      font: 16px/1.65 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #fff;
+      font: 16px/1.7 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
     }
-    a { color: inherit; }
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-dark); }
     .wrap { width: min(calc(100% - 40px), var(--max)); margin: 0 auto; }
     header {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 26px 0; border-bottom: 1px solid var(--line);
+      padding: 22px 0;
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-size: .88rem;
     }
-    .brand { text-decoration: none; font-weight: 800; letter-spacing: -.02em; }
-    .brand span { color: var(--accent); font-weight: 500; margin-left: 8px; }
-    .repo-link { color: var(--muted); text-decoration: none; font-size: .94rem; }
-    .repo-link:hover { color: var(--ink); }
-    .hero {
-      display: grid; grid-template-columns: 1.02fr .98fr; gap: clamp(32px, 6vw, 88px);
-      align-items: center; padding: clamp(70px, 10vw, 130px) 0 92px;
-    }
-    .eyebrow, .kicker {
-      color: var(--accent); font-size: .76rem; font-weight: 800;
-      letter-spacing: .16em; text-transform: uppercase;
+    header a { color: inherit; text-decoration: none; }
+    header .brand { color: var(--ink); font-weight: 800; letter-spacing: .02em; }
+    header .right { float: right; }
+    .hero { padding: 78px 0 34px; text-align: center; }
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
     }
     h1 {
-      max-width: 700px; margin: 18px 0 22px;
-      font-size: clamp(2.7rem, 6vw, 5.7rem); line-height: .99; letter-spacing: -.07em;
+      max-width: 1000px;
+      margin: 0 auto 24px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.2rem, 5vw, 4.35rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -.045em;
     }
-    h1 em { color: var(--accent-2); font-style: normal; }
-    .lede { max-width: 620px; color: var(--muted); font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
-    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .authors { margin: 0 auto 5px; font-size: 1.08rem; }
+    .authors strong { font-weight: 700; }
+    .affiliation, .status { color: var(--muted); }
+    .status { margin-top: 12px; font-size: .92rem; }
+    .links {
+      display: flex; justify-content: center; flex-wrap: wrap; gap: 10px;
+      margin: 30px auto 0;
+    }
     .button {
-      display: inline-flex; align-items: center; gap: 10px; padding: 12px 17px;
-      border: 1px solid var(--line); border-radius: 999px; text-decoration: none;
-      background: rgba(255, 255, 255, .05); font-weight: 700;
+      display: inline-flex; align-items: center; gap: 7px;
+      padding: 10px 16px; border: 1px solid var(--line); border-radius: 6px;
+      color: var(--ink); background: #fff; font-weight: 700; text-decoration: none;
     }
-    .button.primary { color: #03131a; background: var(--accent); border-color: var(--accent); }
-    .button:hover { transform: translateY(-1px); }
-    .hero-card, .video-card {
-      overflow: hidden; border: 1px solid var(--line); border-radius: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,.1), rgba(255,255,255,.025));
-      box-shadow: 0 28px 90px rgba(0,0,0,.28);
+    .button.primary { color: #fff; border-color: var(--accent); background: var(--accent); }
+    .button:hover { border-color: var(--accent); color: var(--accent-dark); }
+    .button.primary:hover { color: #fff; background: var(--accent-dark); }
+    figure { margin: 46px 0 0; }
+    figure img { display: block; width: 100%; border: 1px solid var(--line); border-radius: 8px; }
+    figcaption { margin-top: 10px; color: var(--muted); font-size: .88rem; }
+    section { padding: 62px 0; border-top: 1px solid var(--line); }
+    .section-label {
+      color: var(--accent); font-size: .75rem; font-weight: 800;
+      letter-spacing: .14em; text-transform: uppercase;
     }
-    .hero-card img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; }
-    .hero-card figcaption, .video-meta { color: var(--muted); padding: 14px 18px; font-size: .92rem; }
-    section { padding: 78px 0; }
-    .section-head { max-width: 780px; margin-bottom: 30px; }
-    h2 { margin: 8px 0 12px; font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -.05em; }
-    .section-head p { color: var(--muted); max-width: 760px; }
-    .video-card video {
-      display: block; width: 100%; aspect-ratio: 64 / 27; background: #000;
+    h2 {
+      margin: 7px 0 14px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.9rem, 4vw, 2.75rem);
+      font-weight: 600; line-height: 1.15; letter-spacing: -.035em;
     }
-    .video-meta { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-    .flow {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-      border: 1px solid var(--line); background: var(--line);
-      border-radius: 18px; overflow: hidden;
+    .abstract { max-width: 930px; margin: 0 auto; font-size: 1.08rem; }
+    .demo-intro { max-width: 780px; color: var(--muted); }
+    .video-box {
+      margin-top: 26px; overflow: hidden; border-radius: 8px;
+      background: #0b0d12; box-shadow: 0 16px 42px rgba(23, 32, 51, .16);
     }
-    .flow article { min-height: 170px; padding: 24px; background: rgba(14, 28, 46, .9); }
-    .flow strong { display: block; margin: 20px 0 8px; font-size: 1.12rem; }
-    .flow p { margin: 0; color: var(--muted); font-size: .94rem; }
-    .num { color: var(--accent); font-variant-numeric: tabular-nums; }
-    .paper {
-      display: flex; justify-content: space-between; align-items: end; gap: 30px;
-      padding: 34px; border: 1px solid var(--line); border-radius: 18px; background: var(--panel);
+    video { display: block; width: 100%; aspect-ratio: 64 / 27; background: #000; }
+    .video-meta {
+      display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+      padding: 12px 16px; color: #c8d1df; font-size: .86rem;
     }
-    .paper p { margin: 8px 0 0; color: var(--muted); }
-    footer { padding: 36px 0 50px; color: var(--muted); font-size: .9rem; }
-    @media (max-width: 820px) {
-      .hero { grid-template-columns: 1fr; padding-top: 70px; }
-      .flow { grid-template-columns: repeat(2, 1fr); }
-      .paper { align-items: start; flex-direction: column; }
+    .method-grid {
+      display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(260px, .75fr);
+      gap: 34px; align-items: start;
+    }
+    .method-figure img { margin-top: 8px; }
+    .method-copy { color: var(--muted); }
+    .steps { display: grid; gap: 0; margin-top: 22px; }
+    .step {
+      display: grid; grid-template-columns: 42px 1fr; gap: 12px;
+      padding: 15px 0; border-top: 1px solid var(--line);
+    }
+    .step:last-child { border-bottom: 1px solid var(--line); }
+    .step-number { color: var(--accent); font-weight: 800; }
+    .step strong { display: block; color: var(--ink); }
+    .step span { color: var(--muted); font-size: .93rem; }
+    .facts {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      margin-top: 26px; border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+    }
+    .fact { padding: 23px 20px; background: var(--soft); border-right: 1px solid var(--line); }
+    .fact:last-child { border-right: 0; }
+    .fact b { display: block; color: var(--accent); font-size: 1.8rem; line-height: 1.1; }
+    .fact span { display: block; margin-top: 8px; color: var(--muted); font-size: .88rem; }
+    .release-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 24px;
+    }
+    .release {
+      padding: 22px; border: 1px solid var(--line); border-radius: 8px; background: var(--soft);
+    }
+    .release strong { display: block; margin-bottom: 7px; }
+    .release p { margin: 0; color: var(--muted); font-size: .93rem; }
+    .citation {
+      position: relative; padding: 20px; overflow: auto;
+      border: 1px solid var(--line); border-radius: 8px; background: #101827; color: #e8eef7;
+      font: .86rem/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    .copy {
+      position: absolute; top: 12px; right: 12px; padding: 6px 10px;
+      border: 1px solid #53647d; border-radius: 5px; color: #e8eef7; background: #1d2b40; cursor: pointer;
+    }
+    footer { padding: 36px 0 52px; color: var(--muted); font-size: .88rem; }
+    @media (max-width: 760px) {
+      .hero { padding-top: 52px; }
+      .method-grid { grid-template-columns: 1fr; }
+      .facts { grid-template-columns: repeat(2, 1fr); }
+      .fact:nth-child(2) { border-right: 0; }
+      .fact:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .release-grid { grid-template-columns: 1fr; }
     }
     @media (max-width: 520px) {
       .wrap { width: min(calc(100% - 28px), var(--max)); }
-      header { padding: 20px 0; }
-      .brand span { display: none; }
-      .flow { grid-template-columns: 1fr; }
-      .flow article { min-height: 0; }
-      .video-meta { display: block; }
-      .video-meta span { display: block; margin: 3px 0; }
+      header .right { display: none; }
+      .authors { font-size: .98rem; }
+      .facts { grid-template-columns: 1fr; }
+      .fact { border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
     }
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
-      <a class="brand" href="./">ActivAsk<span>real-world robotics</span></a>
-      <a class="repo-link" href="https://github.com/yhad666/ActivAsk">View repository ↗</a>
+      <a class="brand" href="./">ActivAsk</a>
+      <span class="right"><a href="https://github.com/yhad666/ActivAsk">GitHub repository ↗</a></span>
     </header>
 
     <main>
-      <section class="hero">
-        <div>
-          <div class="eyebrow">Real-world robotics demonstration</div>
-          <h1>Clarify the target.<br><em>Then grasp with confidence.</em></h1>
-          <p class="lede">ActivAsk resolves referential ambiguity before robotic grasping by asking candidate-grounded questions, updating the candidate state from the user's answer, and executing only after the target is resolved.</p>
-          <div class="actions">
-            <a class="button primary" href="#demo">Play the demo <span aria-hidden="true">▶</span></a>
-            <a class="button" href="https://github.com/yhad666/ActivAsk">Read the research repo ↗</a>
-          </div>
-        </div>
-        <figure class="hero-card">
-          <img src="assets/activask_teaser.jpg" alt="ActivAsk scene observations">
-          <figcaption>ActivAsk connects visual candidate grounding, clarification, and real-robot execution.</figcaption>
+      <section class="hero" style="border-top: 0;">
+        <p class="eyebrow">Research project · Robotics · 2026</p>
+        <h1>ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions</h1>
+        <p class="authors"><strong>Haoandong Yang</strong> · Gabriel W. Haddon-Hill · Teresa Zielinska · Shingo Murata</p>
+        <p class="affiliation">Murata Laboratory · Keio University</p>
+        <p class="status"><strong>Submitted, 2026</strong></p>
+        <nav class="links" aria-label="Project links">
+          <a class="button primary" href="#demo">▶ Play demo</a>
+          <a class="button" href="https://github.com/yhad666/ActivAsk">Code ↗</a>
+          <a class="button" href="https://github.com/yhad666/ActivAsk/tree/main/data">Data & analysis ↗</a>
+          <a class="button" href="https://murata-lab.jp/publications/?lang=en">Publication record ↗</a>
+        </nav>
+        <figure>
+          <a href="#demo"><img src="assets/figure_1_conceptual_overview.jpg" alt="ActivAsk conceptual overview"></a>
+          <figcaption>ActivAsk resolves referential ambiguity before robotic grasping through candidate-grounded clarification.</figcaption>
         </figure>
       </section>
 
+      <section>
+        <div class="section-label">Abstract</div>
+        <p class="abstract">Robotic manipulation often fails before grasping begins: a referring instruction may not uniquely identify one visible object. ActivAsk treats clarification as an active inference problem. It constructs open-vocabulary candidates from RGB-D observations, proposes candidate-grounded yes/no questions, selects a partition using an expected-free-energy criterion, updates the candidate state from the user's answer, and executes the grasp only after the target is resolved.</p>
+      </section>
+
       <section id="demo">
-        <div class="section-head">
-          <div class="kicker">01 / Real-world demo</div>
-          <h2>ActivAsk in the lab</h2>
-          <p>This 67-second demonstration shows the system operating in a cluttered tabletop scene with multiple cups and a Hello Robot Stretch platform. Use the controls below to play the recording directly on this homepage.</p>
-        </div>
-        <div class="video-card">
-          <video controls autoplay muted playsinline preload="metadata" poster="assets/activask_teaser.jpg">
+        <div class="section-label">Real-world demonstration</div>
+        <h2>ActivAsk in the lab</h2>
+        <p class="demo-intro">A 67-second real-robot demonstration in a cluttered tabletop scene with multiple cups. The system clarifies the target and then executes the corresponding grasp with a Hello Robot Stretch platform.</p>
+        <div class="video-box">
+          <video controls playsinline preload="metadata" poster="assets/activask_teaser.jpg">
             <source src="videos/demo.mp4" type="video/mp4">
             Your browser does not support HTML5 video. <a href="videos/demo.mp4">Download the MP4</a>.
           </video>
-          <div class="video-meta">
-            <span>67 sec · real-robot execution</span>
-            <span>H.264 MP4 · 1280×540 · 24 fps</span>
+          <div class="video-meta"><span>Real-robot execution · 67 seconds</span><a href="https://raw.githubusercontent.com/yhad666/ActivAsk/main/videos/demo.mp4">Download MP4 ↗</a></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="method-grid">
+          <div class="method-figure">
+            <div class="section-label">Method overview</div>
+            <h2>Ask only what resolves the ambiguity.</h2>
+            <p class="method-copy">ActivAsk uses the candidate set as the state of the interaction. Candidate partitions are scored externally with the deployed expected-free-energy objective, so the robot can choose informative clarification questions without asking the VLM to optimize the objective directly.</p>
+            <img src="assets/figure_1_conceptual_overview.jpg" alt="ActivAsk method overview">
+          </div>
+          <div class="steps" aria-label="ActivAsk pipeline">
+            <div class="step"><div class="step-number">01</div><div><strong>Perceive</strong><span>Construct open-vocabulary candidates from RGB-D input.</span></div></div>
+            <div class="step"><div class="step-number">02</div><div><strong>Clarify</strong><span>Propose candidate-grounded yes/no questions.</span></div></div>
+            <div class="step"><div class="step-number">03</div><div><strong>Update</strong><span>Eliminate candidates inconsistent with the answer.</span></div></div>
+            <div class="step"><div class="step-number">04</div><div><strong>Execute</strong><span>Grasp only after the target state is resolved.</span></div></div>
           </div>
         </div>
       </section>
 
       <section>
-        <div class="section-head">
-          <div class="kicker">02 / System loop</div>
-          <h2>From ambiguity to action.</h2>
-        </div>
-        <div class="flow">
-          <article><span class="num">01</span><strong>Perceive</strong><p>Construct open-vocabulary object candidates from RGB-D observations.</p></article>
-          <article><span class="num">02</span><strong>Clarify</strong><p>Ask a candidate-grounded yes/no question when the instruction is ambiguous.</p></article>
-          <article><span class="num">03</span><strong>Update</strong><p>Use the user's answer to eliminate inconsistent candidates.</p></article>
-          <article><span class="num">04</span><strong>Execute</strong><p>Pass the resolved target to the robot for grasp execution.</p></article>
+        <div class="section-label">Evaluation</div>
+        <h2>Released for reproducible analysis.</h2>
+        <div class="facts">
+          <div class="fact"><b>1,512</b><span>offline target-resolution trials</span></div>
+          <div class="fact"><b>228</b><span>online robot-execution trials</span></div>
+          <div class="fact"><b>4</b><span>stages in the clarification loop</span></div>
+          <div class="fact"><b>SE3</b><span>Hello Robot Stretch platform</span></div>
         </div>
       </section>
 
       <section>
-        <div class="paper">
-          <div>
-            <div class="kicker">Research release</div>
-            <h2>Built for reproducible study.</h2>
-            <p>Explore the public data, analysis scripts, prompt materials, minimal policy implementation, and supplementary videos.</p>
-          </div>
-          <a class="button primary" href="https://github.com/yhad666/ActivAsk">Open ActivAsk on GitHub ↗</a>
+        <div class="section-label">Open-source release</div>
+        <h2>Everything needed to inspect the study.</h2>
+        <div class="release-grid">
+          <article class="release"><strong>Data & calibration</strong><p>Public trial records, scene observations, instruction pools, and detector calibration sweeps.</p><p><a href="https://github.com/yhad666/ActivAsk/tree/main/data">Browse data ↗</a></p></article>
+          <article class="release"><strong>Prompts & policy</strong><p>System prompts, policy-specific role instructions, JSON schemas, and the minimal policy implementation.</p><p><a href="https://github.com/yhad666/ActivAsk/tree/main/prompts">Browse prompts ↗</a></p></article>
+          <article class="release"><strong>Examples & videos</strong><p>Offline/online examples, EFE selection demo, model setup template, and supplementary real-robot clips.</p><p><a href="https://github.com/yhad666/ActivAsk/tree/main/examples">Browse examples ↗</a></p></article>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-label">Citation</div>
+        <h2>If you use ActivAsk, please cite the work.</h2>
+        <div class="citation">
+          <button class="copy" type="button" id="copyCitation">Copy</button>
+<pre id="citationText">@article{yang2026activask,
+  title   = {ActivAsk: Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions},
+  author  = {Yang, Haoandong and Haddon-Hill, Gabriel W. and Zielinska, Teresa and Murata, Shingo},
+  year    = {2026},
+  note    = {Submitted manuscript}
+}</pre>
         </div>
       </section>
     </main>
 
-    <footer>ActivAsk · Free-Energy-Guided Clarification for Robotic Grasping under Ambiguous Instructions</footer>
+    <footer>ActivAsk · Code under MIT License · Data, scenes, calibration tables, instruction pools, and videos under CC BY 4.0</footer>
   </div>
+  <script>
+    const copyButton = document.getElementById("copyCitation");
+    const citation = document.getElementById("citationText");
+    copyButton.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(citation.textContent);
+        copyButton.textContent = "Copied";
+        setTimeout(() => { copyButton.textContent = "Copy"; }, 1400);
+      } catch {
+        copyButton.textContent = "Select text";
+      }
+    });
+  </script>
 </body>
 </html>
